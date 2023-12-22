@@ -49,6 +49,15 @@ app.get("/api/wx_openid", async (req, res) => {
   }
 });
 
+// 获取计数
+app.get("/api/users", async (req, res) => {
+  const result = await Counter.count();
+  res.send({
+    code: 0,
+    data: result,
+  });
+});
+
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
