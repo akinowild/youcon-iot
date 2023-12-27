@@ -7,7 +7,7 @@ const { init: initDB, Counter } = require("./db");
 
 const logger = morgan("tiny");
 
-import { userLogin } from "./login/index.js";
+const userLogin = require('./login/index')
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
