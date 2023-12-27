@@ -72,12 +72,17 @@ app.post("/api/users/login", async (req, res) => {
   axios({
     url:'https://api.weixin.qq.com/sns/jscode2session',
     params:query
-  }).then((res)=>{
+  }).then((result)=>{
     res.send({
       code: 200,
-      data: res.data,
+      data: result.data,
     });
-  })
+  }).catch(function (error) {
+    res.send({
+      code: 100,
+      data: error,
+    });
+  });
 
 });
 
