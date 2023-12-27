@@ -58,6 +58,30 @@ app.get("/api/users", async (req, res) => {
   });
 });
 
+// 获取计数
+app.get("/api/users/login", async (req, res) => {
+  const query = {
+    appid:'wxa98d10733721a00e',
+    secret:'8ad868ec06bf533e108b4742f78bf30c',
+    js_code:req,
+    grant_type:'client_credential'
+  }
+  const data = await fetch('https://api.weixin.qq.com/sns/jscode2session',{
+    method:'GET',
+    headers:{
+      "Content-Type": "application/json",
+    },
+    body:JSON.stringify(query)
+  })
+  res.send({
+    code: 0,
+    data: data.json(),
+  });
+});
+
+
+
+
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
