@@ -62,20 +62,23 @@ app.get("/api/users", async (req, res) => {
 // 获取计数
 app.post("/api/users/login", async (req, res) => {
   const { code } = req.body;
+  console.log(code)
   const query = {
     appid:'wxa98d10733721a00e',
     secret:'8ad868ec06bf533e108b4742f78bf30c',
-    js_code:code,
+    js_code:'0e1t2eGa1vQhCG0Oy2Ga1p7lAj3t2eGN',
     grant_type:'client_credential'
   }
-  const data = await axios({
+  axios({
     url:'https://api.weixin.qq.com/sns/jscode2session',
     params:query
+  }).then((res)=>{
+    res.send({
+      code: 200,
+      data: res.data,
+    });
   })
-  res.send({
-    code: 200,
-    data: data,
-  });
+
 });
 
 
