@@ -60,11 +60,12 @@ app.get("/api/users", async (req, res) => {
 });
 
 // 获取计数
-app.get("/api/users/login", async (req, res) => {
+app.post("/api/users/login", async (req, res) => {
+  const { code } = req.body;
   const query = {
     appid:'wxa98d10733721a00e',
     secret:'8ad868ec06bf533e108b4742f78bf30c',
-    js_code:req.code,
+    js_code:code,
     grant_type:'client_credential'
   }
   const data = await axios({
@@ -72,7 +73,7 @@ app.get("/api/users/login", async (req, res) => {
     params:query
   })
   res.send({
-    code: 0,
+    code: 200,
     data: data,
   });
 });
