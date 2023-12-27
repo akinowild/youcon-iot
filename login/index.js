@@ -25,9 +25,7 @@ function userLogin(code){
 function userPhoneNumber(code){
     return axios({
         url:`${API_HOST}/wxa/business/getuserphonenumber`,
-        data:{
-            code
-        }
+        params:{code}
     }).then(res=>{
         return res.data
     }).catch(error=>{
