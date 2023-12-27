@@ -1,11 +1,13 @@
 const path = require("path");
-const axios = require('axios')
+
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { init: initDB, Counter } = require("./db");
 
 const logger = morgan("tiny");
+
+import { userLogin } from "./login/index.js";
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -62,31 +64,12 @@ app.get("/api/users", async (req, res) => {
 // 获取计数
 app.post("/api/users/login", async (req, res) => {
   const { code } = req.body;
-  const query = {
-    appid:'wxa98d10733721a00e',
-    secret:'8ad868ec06bf533e108b4742f78bf30c',
-    js_code:code,
-    grant_type:'client_credential'
-  }
-  axios({
-    url:'https://api.weixin.qq.com/sns/jscode2session',
-    params:query
-  }).then((result)=>{
-    res.send({
-      code: 200,
-      data: result.data,
-    });
-  }).catch(function (error) {
-    res.send({
-      code: 100,
-      data: error,
-    });
+  const data = await userLogin(code)
+  await res.send({
+    code: 200,
+    data: data,
   });
-
 });
-
-
-
 
 const port = process.env.PORT || 80;
 
