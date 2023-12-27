@@ -73,7 +73,8 @@ app.post("/api/users/login", async (req, res) => {
 
 // 获取用户手机号
 app.post("/api/users/userPhoneNumber", async (req, res) => {
-  const data = await userPhoneNumber()
+  const { code } = req.body;
+  const data = await userPhoneNumber(code)
   await res.send({
     code: 200,
     data: data,

@@ -22,9 +22,12 @@ function userLogin(code){
 }
 
 // 获取用户手机号
-function userPhoneNumber(){
+function userPhoneNumber(code){
     return axios({
         url:`${API_HOST}/wxa/business/getuserphonenumber`,
+        data:{
+            code
+        }
     }).then(res=>{
         return res.data
     }).catch(error=>{
