@@ -1,4 +1,5 @@
 const path = require("path");
+const axios = require('axios')
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -66,16 +67,13 @@ app.get("/api/users/login", async (req, res) => {
     js_code:req.code,
     grant_type:'client_credential'
   }
-  const data = await fetch('https://api.weixin.qq.com/sns/jscode2session',{
-    method:'GET',
-    headers:{
-      "Content-Type": "application/json",
-    },
-    body:JSON.stringify(query)
+  const data = await axios({
+    url:'https://api.weixin.qq.com/sns/jscode2session',
+    params:query
   })
   res.send({
     code: 0,
-    data: data.json(),
+    data: data,
   });
 });
 
