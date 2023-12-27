@@ -62,7 +62,7 @@ app.get("/api/users", async (req, res) => {
 });
 
 // 登录获取token
-app.get("/api/users/login", async (req, res) => {
+app.post("/api/users/login", async (req, res) => {
   const { code } = req.body;
   const data = await userLogin(code)
   await res.send({
@@ -72,7 +72,7 @@ app.get("/api/users/login", async (req, res) => {
 });
 
 // 获取用户手机号
-app.get("/api/users/userPhoneNumber", async (req, res) => {
+app.post("/api/users/userPhoneNumber", async (req, res) => {
   const { code } = req.body;
   const data = await userPhoneNumber(code)
   await res.send({

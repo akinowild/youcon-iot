@@ -13,6 +13,7 @@ function userLogin(code){
     }
     return axios({
         url:`${API_HOST}/sns/jscode2session`,
+        method:"post",
         params:query
     }).then(res=>{
         return res.data
@@ -23,14 +24,12 @@ function userLogin(code){
 
 // 获取用户手机号
 function userPhoneNumber(code){
-    const data = {
-        code:code
-    }
     return axios({
-        url:`${API_HOST}/wxa/business/getuserphonenumber`,
+        url:`${API_HOST}/wxa/business/getuserphonenumber?access_token=75_d-BaveaMS7Yq8yvupDzwAPj4m89w9MkO9yIT24i1TdlOAiMsixifUZH4uFeMkvbIllc26vYYIHVT4hZo2qVfqC0338X7Fr2vdA-GvA-YXfq3eKNOxw3v3voovS8WABbAEAQUV`,
         method:'post',
-        data
+        data:{code:code}
     }).then(res=>{
+        console.log(res.data)
         return res.data
     }).catch(error=>{
         return error.data
