@@ -62,11 +62,10 @@ app.get("/api/users", async (req, res) => {
 // 获取计数
 app.post("/api/users/login", async (req, res) => {
   const { code } = req.body;
-  console.log(code)
   const query = {
     appid:'wxa98d10733721a00e',
     secret:'8ad868ec06bf533e108b4742f78bf30c',
-    js_code:'0e1t2eGa1vQhCG0Oy2Ga1p7lAj3t2eGN',
+    js_code:code,
     grant_type:'client_credential'
   }
   axios({
