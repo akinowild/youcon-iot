@@ -1,10 +1,10 @@
 const axios = require('axios')
 
-const API_HOST = "https://api.weixin.qq.com/" // 如果是mock模式 就不配置host 会走本地Mock拦截
+const API_HOST = "https://api.weixin.qq.com" // 如果是mock模式 就不配置host 会走本地Mock拦截
 axios.defaults.baseURL = API_HOST
 
 // 用户登录
-module.exports = function userLogin(code){
+function userLogin(code){
     const query = {
         appid:'wxa98d10733721a00e',
         secret:'8ad868ec06bf533e108b4742f78bf30c',
@@ -12,7 +12,7 @@ module.exports = function userLogin(code){
         grant_type:'client_credential'
     }
     return axios({
-        url:'https://api.weixin.qq.com/sns/jscode2session',
+        url:`${API_HOST}/sns/jscode2session`,
         params:query
     }).then(res=>{
         return res.data
@@ -20,3 +20,17 @@ module.exports = function userLogin(code){
         return error.data
     })
 }
+
+// 获取用户手机号
+function userPhoneNumber(){
+    return axios({
+        url:`${API_HOST}/wxa/business/getuserphonenumber`,
+    }).then(res=>{
+        return res.data
+    }).catch(error=>{
+        return error.data
+    })
+}
+
+exports.userLogin = userLogin;
+exports.userPhoneNumber = userPhoneNumber;

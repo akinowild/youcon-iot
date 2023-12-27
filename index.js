@@ -7,7 +7,7 @@ const { init: initDB, Counter } = require("./db");
 
 const logger = morgan("tiny");
 
-const userLogin = require('./login/index')
+const {userLogin,userPhoneNumber} = require('./login/index')
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -61,7 +61,7 @@ app.get("/api/users", async (req, res) => {
   });
 });
 
-// 获取计数
+// 登录获取token
 app.post("/api/users/login", async (req, res) => {
   const { code } = req.body;
   const data = await userLogin(code)
@@ -70,6 +70,16 @@ app.post("/api/users/login", async (req, res) => {
     data: data,
   });
 });
+
+// 获取用户手机号
+app.post("/api/users/userPhoneNumber", async (req, res) => {
+  const data = await userPhoneNumber()
+  await res.send({
+    code: 200,
+    data: data,
+  });
+});
+
 
 const port = process.env.PORT || 80;
 
