@@ -63,7 +63,7 @@ app.get("/api/users/login", async (req, res) => {
   const query = {
     appid:'wxa98d10733721a00e',
     secret:'8ad868ec06bf533e108b4742f78bf30c',
-    js_code:req,
+    js_code:req.code,
     grant_type:'client_credential'
   }
   const data = await fetch('https://api.weixin.qq.com/sns/jscode2session',{
