@@ -68,7 +68,6 @@ app.post("/api/users/login", async (req, res) => {
 app.get("/api/users", async (req,res) => {
   console.log(req.params)
   const { openid } = req.params;
-  console.log(openid)
   const { data } = await  User.findAll({
     where:{
       openid:openid
