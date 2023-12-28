@@ -20,8 +20,8 @@ app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// 更新计数
-app.post("/api/loadRecord", async (req, res) => {
+// 添加用户
+app.post("/api/user", async (req, res) => {
   const result =  await User.create(req.body);
   res.send({
     code: 0,
