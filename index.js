@@ -69,7 +69,7 @@ app.get("/api/users", async (req,res) => {
   const { openid } = req.params;
   const { data } = await  User.findAll({
     where:{
-      openid
+      openid:openid
     }
   })
   await res.send({
