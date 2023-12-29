@@ -25,6 +25,7 @@ const User = sequelize.define("user", {
   freezeTableName:true
 });
 
+
 // 数据库初始化方法
 async function init() {
   await User.sync({ alter: true });
