@@ -22,10 +22,7 @@ app.get("/", async (req, res) => {
 
 // 更新计数
 app.post("/api/loadRecord", async (req, res) => {
-  const result =  await User.create({
-    "phone":"18605137066",
-    "openid":"thisdatainfoopenid"
-  });
+  const result =  await User.create(req.body);
   res.send({
     code: 0,
     data: result,

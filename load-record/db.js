@@ -13,7 +13,14 @@ const sequelize = new Sequelize("litter_keeper", MYSQL_USERNAME, MYSQL_PASSWORD,
 
 // 定义数据模型
 const User = sequelize.define("user", {
-
+  nickname:DataTypes.STRING,
+  openid:DataTypes.STRING,
+  phone:DataTypes.STRING,
+  avatar_url:DataTypes.STRING,
+  country:DataTypes.STRING,
+  province:DataTypes.STRING,
+  city:DataTypes.STRING,
+  is_active:DataTypes.NUMBER,
 },{
   freezeTableName:true
 });
