@@ -64,6 +64,24 @@ app.post("/api/users/login", async (req, res) => {
   });
 });
 
+// 查询是否存在当前用户
+app.get("/api/users", async (req,res) => {
+  console.log(req.params)
+  const { openid } = req.params;
+  const { data } = await  User.findAll({
+    where:{
+      openid:openid
+    }
+  })
+  await res.send({
+    body:{
+      code:200,
+      data
+    }
+  })
+
+})
+
 // 获取用户手机号
 app.post("/api/users/userPhoneNumber", async (req, res) => {
   const { code } = req.body;
