@@ -3,7 +3,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, User } = require("./load-record/db");
+// const { init: initDB, User } = require("./load-record/db");
 
 const logger = morgan("tiny");
 
@@ -21,13 +21,13 @@ app.get("/", async (req, res) => {
 });
 
 // 更新计数
-app.post("/api/loadRecord", async (req, res) => {
-  const result =  await User.create(req.body);
-  res.send({
-    code: 0,
-    data: result,
-  });
-});
+// app.post("/api/loadRecord", async (req, res) => {
+//   const result =  await User.create(req.body);
+//   res.send({
+//     code: 0,
+//     data: result,
+//   });
+// });
 
 // 获取计数
 // app.get("/api/count", async (req, res) => {
@@ -46,13 +46,13 @@ app.get("/api/wx_openid", async (req, res) => {
 });
 
 // 获取计数
-app.get("/api/users", async (req, res) => {
-  const result = await Counter.count();
-  res.send({
-    code: 0,
-    data: result,
-  });
-});
+// app.get("/api/users", async (req, res) => {
+//   const result = await Counter.count();
+//   res.send({
+//     code: 0,
+//     data: result,
+//   });
+// });
 
 // 登录获取token
 app.post("/api/users/login", async (req, res) => {
@@ -65,22 +65,21 @@ app.post("/api/users/login", async (req, res) => {
 });
 
 // 查询是否存在当前用户
-app.get("/api/users", async (req,res) => {
-  console.log(req.params)
-  const { openid } = req.params;
-  const { data } = await  User.findAll({
-    where:{
-      openid:openid
-    }
-  })
-  await res.send({
-    body:{
-      code:200,
-      data
-    }
-  })
-
-})
+// app.get("/api/users", async (req,res) => {
+//   console.log(req.params)
+//   const { openid } = req.params;
+//   const { data } = await  User.findAll({
+//     where:{
+//       openid:openid
+//     }
+//   })
+//   await res.send({
+//     body:{
+//       code:200,
+//       data
+//     }
+//   })
+// })
 
 // 获取用户手机号
 app.post("/api/users/userPhoneNumber", async (req, res) => {
