@@ -28,14 +28,23 @@ app.post("/api/loadRecord", async (req, res) => {
   });
 });
 
-// 获取计数
-// app.get("/api/count", async (req, res) => {
-//   const result = await Counter.count();
-//   res.send({
-//     code: 0,
-//     data: result,
-//   });
-// });
+// 查询是否存在当前用户
+app.get("/api/users", async (req,res) => {
+  console.log(req.params)
+  const { openid } = req.params;
+  const { data } = await  User.findAll({
+    where:{
+      openid:openid
+    }
+  })
+  await res.send({
+    body:{
+      code:200,
+      data
+    }
+  })
+
+})
 
 // 小程序调用，获取微信 Open ID
 app.get("/api/wx_openid", async (req, res) => {
